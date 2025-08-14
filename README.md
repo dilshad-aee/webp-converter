@@ -1,100 +1,119 @@
+# 🎨 PNG to WebP Converter
+
 <div align="center">
 
-🖼️ PNG to WebP Pro
-The Ultimate Client-Side Image Converter
-A high-performance, browser-based tool for converting PNG images to the modern, efficient WebP format. This application prioritizes privacy, speed, and user control by performing all operations directly on the client's machine—no files are ever uploaded to a server.
+![PNG to WebP Converter](https://img.shields.io/badge/PNG%20to%20WebP-Converter-blue?style=for-the-badge&logo=image&logoColor=white)
+![Version](https://img.shields.io/badge/version-1.0.0-green?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-orange?style=for-the-badge)
+
+**Professional client-side PNG to WebP converter with batch processing and advanced compression options.**
 
 </div>
 
-<p align="center">
-<img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
-<img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-<img alt="Pull Requests" src="https://img.shields.io/badge/Pull%20Requests-welcome-brightgreen.svg"/>
-<img alt="Built with" src="https://img.shields.io/badge/Built%20with-Vanilla%20JS-orange"/>
-</p>
+---
 
-🔗 Live Demo & Screenshots
-Experience the speed and simplicity firsthand. Try PNG to WebP Pro Now!
+## ✨ Features
 
-(Consider replacing this with a GIF showcasing the workflow)
+- **Batch Processing** - Convert multiple PNG files simultaneously
+- **Client-Side Only** - Files never leave your device, 100% secure
+- **Quality Control** - 6 compression levels from lossless to high compression
+- **Custom Dimensions** - Resize images with precision (1-8192px)
+- **EXIF Removal** - Strip metadata for privacy and smaller files
+- **ZIP Download** - Download all converted files in one archive
+- **Drag & Drop** - Intuitive file upload interface
+
+---
+
+## 🚀 Quick Start
+
+### Installation
+```bash
+git clone https://github.com/dilshad-aee/png-to-webp-converter.git
+cd png-to-webp-converter
+```
+
+Open `index.html` in your web browser. No server required.
+
+### Usage
+1. Drag PNG files into the upload area
+2. Adjust quality and dimension settings
+3. Click "Convert All"
+4. Download individual files or ZIP archive
+
+---
+
+## 📋 Technical Details
+
+### Browser Support
+- Chrome 80+
+- Firefox 75+
+- Safari 14+
+- Edge 80+
+
+### File Specifications
+- **Input**: PNG format only
+- **Output**: WebP format
+- **Max file size**: 50MB per file
+- **Max dimensions**: 8192 × 8192 pixels
+
+### Dependencies
+- JSZip 3.10.1 (ZIP file creation)
+- Font Awesome 6.4.0 (icons)
+- Google Fonts Inter (typography)
+
+---
+
+## 🔧 Project Structure
+
+```
+png-to-webp-converter/
+├── index.html          # Main application
+├── style.css           # Styling
+├── script.js           # Core functionality
+└── README.md           # Documentation
+```
+
+---
+
+## 🔒 Privacy & Security
+
+- **No server uploads** - All processing happens in your browser
+- **No data collection** - Zero tracking or analytics
+- **Metadata removal** - EXIF data automatically stripped
+- **Local processing** - Files remain on your device
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+Report bugs and request features through [GitHub Issues](https://github.com/dilshad-aee/png-to-webp-converter/issues).
+
+---
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Dilshad Ahmed**
+
+[![GitHub](https://img.shields.io/badge/GitHub-dilshad--aee-black?style=flat&logo=github)](https://github.com/dilshad-aee)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-dilshadaee-blue?style=flat&logo=linkedin)](https://linkedin.com/in/dilshadaee)
+
+---
 
 <div align="center">
-<img src="https://placehold.co/800x450/1e1e2e/c9c9c9?text=App+Screenshot+or+GIF+Here" alt="PNG to WebP Pro Screenshot" width="80%">
+
+**Made with ❤️ for the developer community**
+
+⭐ Star this repo if you find it useful!
+
 </div>
-
-✨ Core Features
-Our application is packed with features designed for efficiency, privacy, and a seamless user experience.
-
-Feature
-
-Description
-
-🔒 100% Client-Side
-
-All processing is done in your browser using JavaScript. Your files never leave your computer, ensuring complete privacy and blazing speed.
-
-🔀 Batch Processing
-
-Drag and drop multiple PNG files to convert them all at once, saving you significant time and effort.
-
-⚙️ Advanced Settings
-
-Fine-tune your output with powerful controls for dimensions, resizing behavior, and quality to perfectly balance file size and fidelity.
-
-💾 Flexible Downloads
-
-Download converted files one-by-one, or download them all together in a single, conveniently compressed .ZIP archive.
-
-💡 Modern UI/UX
-
-An intuitive drag-and-drop uploader, real-time progress bars, and informative notifications create a smooth and productive workflow.
-
-🛠️ Tech Stack & Architecture
-This project was built from the ground up using modern web technologies, with a focus on performance and maintainability without relying on a heavy framework.
-
-Core: HTML5, CSS3, Vanilla JavaScript (ES6+)
-
-Archiving: JSZip for creating .ZIP archives directly in the browser.
-
-Icons: Font Awesome for a clean and comprehensive icon set.
-
-Styling: Custom CSS with variables for a consistent and modern theme.
-
-Deployment: Ready to be hosted on any static hosting provider (e.g., GitHub Pages, Netlify, Vercel).
-
-🚀 Getting Started
-To run this project locally, simply clone the repository and open the index.html file in your browser.
-
-Clone the repository:
-
-git clone https://github.com/your-username/your-repo-name.git
-
-Navigate to the project directory:
-
-cd your-repo-name
-
-Open in your browser:
-Open the index.html file in your preferred web browser. No local server or dependencies are required.
-
-🤝 Contributing
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
-
-Fork the Project
-
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
-
-Commit your Changes (git commit -m 'Add some AmazingFeature')
-
-Push to the Branch (git push origin feature/AmazingFeature)
-
-Open a Pull Request
-
-👤 Author
-This project was developed by [Your Name]. Let's connect!
-
-GitHub: @your-username
-
-LinkedIn: Your Name
-
-📜 License
-This project is licensed under the MIT License. See the LICENSE file for more details.
