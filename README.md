@@ -138,7 +138,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Dilshad Ahmed**
+**Muhammed Dilshad**
 
 [![GitHub](https://img.shields.io/badge/GitHub-dilshad--aee-black?style=flat&logo=github)](https://github.com/dilshad-aee)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-dilshadaee-blue?style=flat&logo=linkedin)](https://linkedin.com/in/dilshadaee)
