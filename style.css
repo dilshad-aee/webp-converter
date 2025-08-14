@@ -1,0 +1,852 @@
+/**
+ * =============================================================================
+ * IMPROVED CSS STYLESHEET
+ * =============================================================================
+ * Refinements:
+ * 1.  **Variable Organization**: Grouped CSS variables in `:root` for clarity.
+ * 2.  **DRY Principle**: Created a reusable `.card` class for elements like the
+ * upload section and settings panel to avoid repeating styles.
+ * 3.  **Modern CSS**: Switched to CSS logical properties (e.g., `padding-inline`
+ * instead of `padding-left`/`right`) for better support in different
+ * writing modes (like right-to-left languages).
+ * 4.  **Flexbox Gaps**: Used the `gap` property in flexbox layouts for cleaner
+ * and more consistent spacing, reducing reliance on margins.
+ * 5.  **Global Styles**: Implemented a more robust `box-sizing` inheritance model.
+ * 6.  **Code Readability**: Added comments and ensured consistent ordering of
+ * CSS properties within rules.
+ * =============================================================================
+ */
+
+:root {
+    /* Primary Brand */
+    --primary: #2563EB; /* Rich, modern blue */
+    --primary-dark: #1E40AF; /* Deep navy blue */
+    --primary-light: #3B82F6; /* Bright accent blue */
+
+    /* Semantic Colors */
+    --success: #16A34A; /* Crisp green */
+    --success-dark: #166534; /* Forest green */
+    --warning: #EAB308; /* Modern amber */
+    --error: #DC2626; /* Refined red */
+    --error-dark: #991B1B; /* Dark crimson */
+
+    /* Backgrounds */
+    --bg-page: #F9FAFB; /* Soft off-white */
+    --bg-section: #F3F4F6; /* Light gray */
+    --bg-card: #FFFFFF; /* Clean white */
+    --bg-card-hover: #F9FAFB; /* Slight hover lift */
+    --bg-glass: rgba(255, 255, 255, 0.7);
+
+    /* Text */
+    --text-primary: #111827; /* Deep slate */
+    --text-secondary: #4B5563; /* Neutral gray */
+    --text-muted: #9CA3AF; /* Soft gray */
+
+    /* Borders */
+    --border-primary: #E5E7EB; /* Light neutral border */
+    --border-hover: #D1D5DB; /* Slightly darker border */
+    --border-glass: rgba(17, 24, 39, 0.08);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/*
+ * =========================================
+ * Global & Reset Styles
+ * =========================================
+ */
+
+/* More robust box-sizing inheritance */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, var(--bg-section) 0%, var(--bg-page) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin-inline: auto; /* Logical property for left/right margin */
+    padding-inline: 24px;   /* Logical property for left/right padding */
+}
+
+/*
+ * =========================================
+ * Reusable Utility & Component Classes
+ * =========================================
+ */
+
+/* A base card style to keep code DRY */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 24px;
+}
+
+/* Base button styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer effect for buttons */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--border-hover);
+    border-color: var(--border-hover);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--error), var(--error-dark));
+    color: white;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(239, 68, 68, 0.3);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Base icon button styles */
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--border-primary);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+}
+
+/* Modifiers for icon buttons */
+.btn-icon.success {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+}
+
+.btn-icon.error {
+    background: var(--error);
+    border-color: var(--error);
+    color: white;
+}
+
+.btn-icon.loading {
+    pointer-events: none;
+}
+
+
+/*
+ * =========================================
+ * Header & Stats Section
+ * =========================================
+ */
+.header {
+    padding-block: 60px 80px; /* Logical property for top/bottom padding */
+    text-align: center;
+    position: relative;
+}
+
+/* Decorative background gradient */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.header h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    background: rgb(11, 125, 255);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+}
+
+.header-subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-inline: auto;
+    margin-bottom: 40px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin-inline: auto;
+}
+
+.stat-card {
+    padding: 24px 16px;
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+}
+
+.stat-icon {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 2.5rem;
+    color: var(--primary);
+}
+
+.stat-title {
+    margin-bottom: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stat-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/*
+ * =========================================
+ * Main Content Layout
+ * =========================================
+ */
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 32px;
+    margin-bottom: 60px;
+}
+
+/*
+ * =========================================
+ * Upload Section
+ * =========================================
+ */
+.upload-section {
+    /* Applying the reusable .card style */
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+.upload-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.upload-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.upload-area {
+    position: relative;
+    padding: 40px 32px;
+    margin: 32px;
+    border: 3px dashed var(--border-primary);
+    border-radius: 16px;
+    background: var(--bg-section);
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.upload-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.upload-area:hover::before,
+.upload-area.dragover::before {
+    left: 100%;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.upload-icon {
+    margin-bottom: 24px;
+    font-size: 4rem;
+    color: var(--primary);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+.upload-text {
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.upload-subtext {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+#fileInput {
+    display: none;
+}
+
+/*
+ * =========================================
+ * Files Display Section
+ * =========================================
+ */
+.files-container {
+    /* Using the reusable .card styles and overriding radius */
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 16px;
+    margin-top: 32px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.files-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-primary);
+    position: sticky;
+    top: 0;
+    background: var(--bg-card);
+    z-index: 10;
+}
+
+.files-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.files-count {
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: var(--primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.file-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Replaces margin for cleaner spacing */
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-primary);
+    transition: all 0.2s ease;
+}
+
+.file-item:last-child {
+    border-bottom: none;
+}
+
+.file-item:hover {
+    background: var(--bg-card-hover);
+}
+
+.file-preview {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border: 2px solid var(--border-primary);
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.file-info {
+    flex: 1;
+    min-width: 0; /* Prevents overflow in flex containers */
+}
+
+.file-name {
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.file-actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: 8px;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--border-primary);
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    transition: width 0.3s ease;
+}
+
+/* Empty State Styles */
+.empty-state {
+    padding: 60px 24px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    margin-bottom: 16px;
+    font-size: 4rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.empty-text {
+    margin-bottom: 8px;
+    font-size: 1.125rem;
+}
+
+.empty-subtext {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/*
+ * =========================================
+ * Settings Panel
+ * =========================================
+ */
+.settings-panel {
+    /* Applying the reusable .card style */
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 24px;
+    
+    /* Change height to fill the viewport */
+    height: calc(100vh - 48px);
+    
+    position: sticky;
+    top: 24px;
+
+    /* Add these to manage the internal layout */
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.panel-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.panel-content {
+    padding: 24px;
+    flex-grow: 1;
+    overflow-y: auto;
+
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    background: var(--bg-section);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-block: 8px; /* Logical property for vertical padding */
+    cursor: pointer;
+}
+
+.form-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary); /* Great use of modern CSS */
+}
+
+.form-checkbox label {
+    flex: 1;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.quality-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding: 12px;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    background: var(--bg-section);
+}
+
+.quality-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.quality-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px; /* Replaces margin-based spacing */
+
+    padding-top: 24px;
+    border-top: 1px solid var(--border-primary);
+    justify-content: center;
+}
+
+/*
+ * =========================================
+ * Notifications & Miscellaneous
+ * =========================================
+ */
+.toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    font-size: 0.875rem;
+    max-width: 400px;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    transform: translateX(120%); /* Start further off-screen */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.success { background: var(--success); }
+.toast.error   { background: var(--error); }
+.toast.warning { background: var(--warning); }
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: currentColor;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Custom Scrollbar for file list */
+.files-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.files-container::-webkit-scrollbar-track {
+    background: var(--bg-section);
+}
+
+.files-container::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 4px;
+}
+
+.files-container::-webkit-scrollbar-thumb:hover {
+    background: var(--border-hover);
+}
+
+/* Fade in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*
+ * =========================================
+ * Responsive Design
+ * =========================================
+ */
+
+/* For smaller desktops and large tablets */
+@media (max-width: 1200px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+/* For tablets and mobile devices */
+@media (max-width: 768px) {
+    .container {
+        padding-inline: 16px;
+    }
+
+    .header {
+        padding-block: 40px 60px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px 12px;
+    }
+
+    .upload-area {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+
+    .upload-icon {
+        font-size: 3rem;
+    }
+
+    .upload-text {
+        font-size: 1.125rem;
+    }
+
+    .file-item {
+        padding: 12px 16px;
+    }
+
+    .file-preview {
+        width: 48px;
+        height: 48px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+.site-footer {
+    padding-block: 40px; /* Adds space above and below the footer */
+    text-align: center;
+    border-top: 1px solid var(--border-primary); /* Separator line */
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px; /* Space between the icons */
+    margin-top: 16px;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 1.5rem; /* Makes icons larger */
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary); /* Changes color on hover */
+    transform: translateY(-3px); /* Lifts the icon on hover */
+}

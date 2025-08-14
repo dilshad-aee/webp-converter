@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PNG to WebP Converter - Professional Tool</title>
+    <meta name="description"
+        content="Convert PNG images to WebP format online for free. Batch conversion, custom dimensions, quality control, and EXIF removal." />
+    <meta name="keywords" content="PNG to WebP, image converter, compress images, batch conversion, online tool" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header class="header fade-in">
+            <div class="header-content">
+                <h1><i class="fas fa-magic"></i> PNG to WebP Converter</h1>
+                <p class="header-subtitle">
+                    Transform your PNG images to WebP format with professional-grade
+                    tools and optimization
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-bolt stat-icon"></i>
+                        <div class="stat-title">Lightning Fast</div>
+                        <div class="stat-desc">Client-side processing</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-shield-alt stat-icon"></i>
+                        <div class="stat-title">100% Secure</div>
+                        <div class="stat-desc">Files never leave your device</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-layer-group stat-icon"></i>
+                        <div class="stat-title">Batch Process</div>
+                        <div class="stat-desc">Multiple files at once</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-cog stat-icon"></i>
+                        <div class="stat-title">Advanced Options</div>
+                        <div class="stat-desc">Full customization</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <div class="left-column">
+                <section class="upload-section fade-in">
+                    <div class="upload-header">
+                        <i class="fas fa-cloud-upload-alt" style="color: var(--primary)"></i>
+                        <h2>Upload Files</h2>
+                    </div>
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-file-image upload-icon"></i>
+                        <div class="upload-text">Drag & drop PNG files here</div>
+                        <div class="upload-subtext">
+                            or click to browse • Max 50MB per file
+                        </div>
+                        <input type="file" id="fileInput" accept="image/png" multiple />
+                    </div>
+                </section>
+
+                <div class="files-container" id="filesContainer" style="display: none">
+                    <div class="files-header">
+                        <div class="files-title">
+                            <i class="fas fa-images"></i>
+                            Selected Files
+                            <span class="files-count" id="filesCount">0</span>
+                        </div>
+                        <button class="btn-icon" onclick="clearAll()" title="Clear all files">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="files-list" id="filesList"></div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="settings-panel fade-in">
+                    <div class="panel-header">
+                        <i class="fas fa-sliders-h" style="color: var(--primary)"></i>
+                        <div class="panel-title">Conversion Settings</div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                                Dimensions
+                            </label>
+                            <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 12px;
+                  ">
+                                <input type="number" class="form-input" id="width" placeholder="Width" min="1"
+                                    max="8192" />
+                                <input type="number" class="form-input" id="height" placeholder="Height" min="1"
+                                    max="8192" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-compress"></i>
+                                Quality Level
+                            </label>
+                            <select class="form-select" id="quality">
+                                <option value="1">100% - Lossless</option>
+                                <option value="0.95">95% - Excellent</option>
+                                <option value="0.9">90% - High Quality</option>
+                                <option value="0.8" selected>80% - Good Balance</option>
+                                <option value="0.7">70% - Medium</option>
+                                <option value="0.6">60% - High Compression</option>
+                            </select>
+                            <div class="quality-preview">
+                                <span class="quality-label">Compression</span>
+                                <span class="quality-value" id="qualityValue">Good Balance</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-crop"></i>
+                                Resize Mode
+                            </label>
+                            <select class="form-select" id="resizeMode">
+                                <option value="maintain">Maintain Aspect Ratio</option>
+                                <option value="stretch">Stretch to Fit</option>
+                                <option value="crop">Crop Center</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <input type="checkbox" id="removeExif" checked />
+                                <label for="removeExif">
+                                    <i class="fas fa-eye-slash"></i>
+                                    Remove EXIF metadata
+                                </label>
+                            </div>
+                            <div class="form-checkbox">
+                                <input type="checkbox" id="autoDownload" checked />
+                                <label for="autoDownload">
+                                    <i class="fas fa-download"></i>
+                                    Auto-download converted files
+                                </label>
+                            </div>
+                            <div class="form-checkbox">
+                                <input type="checkbox" id="showPreview" />
+                                <label for="showPreview">
+                                    <i class="fas fa-eye"></i>
+                                    Show conversion preview
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="convertBtn" disabled onclick="convertAll()">
+                            <i class="fas fa-magic"></i>
+                            Convert All
+                        </button>
+                        <button class="btn btn-secondary" id="downloadAllBtn" disabled onclick="downloadAll()">
+                            <i class="fas fa-download"></i>
+                            Download All
+                        </button>
+                        <button class="btn btn-secondary" id="downloadZipBtn" disabled onclick="downloadAllAsZip()">
+                            <i class="fas fa-file-archive"></i>
+                            Download .ZIP
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <p>Make with love ❤️ &copy; 2025</p>
+        <div class="social-links">
+            <a href="https://github.com/dilshad-aee" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub Profile" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/dilshadaee" target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn Profile" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
