@@ -89,6 +89,9 @@ font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     max-width: 1400px;
     margin-inline: auto; /* Logical property for left/right margin */
     padding-inline: 24px;   /* Logical property for left/right padding */
+    width: 100%;
+box-sizing: border-box; 
+
 }
 
 /*
@@ -465,6 +468,8 @@ font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     padding: 16px 24px;
     border-bottom: 1px solid var(--border-primary);
     transition: all 0.2s ease;
+  overflow: hidden; /* ADD THIS LINE */
+    box-sizing: border-box; /* ADD THIS LINE */
 }
 
 .file-item:last-child {
@@ -477,18 +482,13 @@ font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
 .file-preview {
     flex-shrink: 0;
- 
-    
+    width: 60px; /* CHANGE FROM EXISTING */
+    height: 60px; /* CHANGE FROM EXISTING */
+    min-width: 60px; /* ADD THIS LINE */
     border: 2px solid var(--border-primary);
-   
-  
-
-display: block;          /* Removes extra space beneath the image */
-    width: 100%;             /* Makes the image fill its container's width */
-    height: 100%;            /* Makes the image fill its container's height */
-    object-fit: cover;       /* Crucial: Scales the image to fit, cropping as needed */
+    display: block;
+    object-fit: cover;
     border-radius: 10px;
-
 }
 
 .file-info {
@@ -793,9 +793,7 @@ display: block;          /* Removes extra space beneath the image */
 
 /* For tablets and mobile devices */
 @media (max-width: 768px) {
-    .container {
-        padding-inline: 16px;
-    }
+   
 
     .header {
         padding-block: 40px 60px;
@@ -827,9 +825,15 @@ display: block;          /* Removes extra space beneath the image */
         padding: 12px 16px;
     }
 
+    .container {
+        padding-inline: 16px;
+        max-width: 100%; /* ADD THIS LINE */
+    }
+
     .file-preview {
         width: 48px;
         height: 48px;
+        min-width: 48px; /* ADD THIS LINE */
     }
 
     .btn-group {
