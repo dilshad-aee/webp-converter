@@ -477,11 +477,18 @@ font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
 .file-preview {
     flex-shrink: 0;
-    width: 56px;
-    height: 56px;
+ 
+    
     border: 2px solid var(--border-primary);
-    border-radius: 12px;
-    object-fit: cover;
+   
+  
+
+display: block;          /* Removes extra space beneath the image */
+    width: 100%;             /* Makes the image fill its container's width */
+    height: 100%;            /* Makes the image fill its container's height */
+    object-fit: cover;       /* Crucial: Scales the image to fit, cropping as needed */
+    border-radius: 10px;
+
 }
 
 .file-info {
