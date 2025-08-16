@@ -74,12 +74,15 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, var(--bg-section) 0%, var(--bg-page) 100%);
-    color: var(--text-primary);
+    /* ... (keep existing styles) */
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
+
+    /* Add these three lines */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
@@ -773,6 +776,12 @@ body {
         grid-template-columns: 1fr;
         gap: 24px;
     }
+
+    /* Add this rule to improve mobile UX */
+    .settings-panel {
+        position: static; /* Un-stick the panel */
+        height: auto;     /* Let content define its height */
+    }
 }
 
 /* For tablets and mobile devices */
@@ -826,9 +835,10 @@ body {
     }
 }
 .site-footer {
-    padding-block: 40px; /* Adds space above and below the footer */
+    width: 100%; /* Add this line */
+    padding-block: 40px;
     text-align: center;
-    border-top: 1px solid var(--border-primary); /* Separator line */
+    border-top: 1px solid var(--border-primary);
     color: var(--text-secondary);
     font-size: 0.875rem;
 }
